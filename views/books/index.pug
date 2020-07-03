@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+  h1 Books
+  
+    p
+      
+        form.search(action="/books/search", method="get")
+          
+        
+          input(type="text", name="searchtext", placeholder="Search for books...", class="search")
+          input(type="submit", value="Search", class="search")
+          div.space
+          a(href="/books/new", id="new" class="button") Create New Book
+
+    if(term) 
+      p
+        h5(style="display: inline")= 'Searched for: "' + term + '" | '
+          a(href="/books" style="display: inline") Clear Search Results
+
+    
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year
+    tbody  
+      each book in books
+        tr.entry
+          td
+            a(href="/books/" + book.id)= book.title
+          td= book.author
+          td= book.genre
+          td= book.year
+
+  div.page
+
+  script(type='text/javascript' src='/javascripts/script.js')
+
+
+
+
+        
